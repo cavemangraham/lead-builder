@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>#</th>
       <th>Name</th>
       <th>Address</th>
       <th>Email</th>
@@ -16,12 +17,13 @@
   </thead>
 
   <tbody>
-    <% @businesses.each do |business| %>
+    <% @businesses.each_with_index do |business, i| %>
       <tr>
+        <td><%= i %></td>
         <td><%= business.name %></td>
         <td><%= business.address %></td>
         <td><%= business.email %></td>
-        <td><%= business.website %></td>
+        <td><%= link_to business.website, business.website, target: '_blank' %></td>
         <td><%= business.phone %></td>
         <td><%= business.responsive %></td>
         <td><%= link_to 'Show', business %></td>
