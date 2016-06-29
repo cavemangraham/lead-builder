@@ -5,10 +5,19 @@ class BusinessesController < ApplicationController
   # GET /businesses.json
   def index
     @businesses = Business.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @businesses.to_csv, filename: 'Business_List.csv' }
+    end
   end
 
   def filter
     @businesses = Business.where("responsive LIKE ?", "false")
+    respond_to do |format|
+      format.html
+      format.csv { send_data @businesses.to_csv, filename: 'Responsive_Business_List.csv' }
+    end
   end
 
   def remove_all
@@ -19,6 +28,7 @@ class BusinessesController < ApplicationController
     flash[:notice] = "All businesses have been deleted."
     redirect_to businesses_url
   end
+  
 
   # GET /businesses/1
   # GET /businesses/1.json

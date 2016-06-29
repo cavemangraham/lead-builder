@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Business Leads</h1>
-<h2><%= link_to 'Only Show Non-Responsive', filter_path %></h2>
-<h2><%= link_to 'Delete All', remove_all_businesses_path, method: :delete %></h2>
+<p style="display: inline-block; border: 1px solid black"><%= link_to 'Only Show Non-Responsive', filter_path %></p>
+<p style="display: inline-block; border: 1px solid black"><%= link_to 'Delete All', remove_all_businesses_path, method: :delete %></p>
+<p style="display: inline-block; border: 1px solid black"><%= link_to 'Download CSV', businesses_path(format: :csv) %></p>
 
 
 <table>
