@@ -11,6 +11,15 @@ class BusinessesController < ApplicationController
     @businesses = Business.where("responsive LIKE ?", "false")
   end
 
+  def remove_all
+    @businesses = Business.all
+    @businesses.each do |business|
+      business.destroy
+    end
+    flash[:notice] = "All businesses have been deleted."
+    redirect_to businesses_url
+  end
+
   # GET /businesses/1
   # GET /businesses/1.json
   def show
