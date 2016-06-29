@@ -25,24 +25,24 @@ namespace :grabber do
 	task responsive: [:environment] do
 		Business.all.each do |business|
 				if business.website.present? and business.responsive.blank?
+					sleep 0.5
 					begin
-					response = HTTParty.get('http://tools.mercenie.com/responsive-check/api/?format=json&url=' + business.website, timeout: 1)
+					response = HTTParty.get('http://tools.mercenie.com/responsive-check/api/?format=json&url=' + business.website, timeout: 3)
 					rescue Net::ReadTimeout, Net::OpenTimeout
-						response = "error"
+						response = {"responsive" => "error"}
 					end
-					p "#{business.name} - #{business.responsive}"
+
+					p "#{business.name}"
 					p "#{response}"
-					if response != "error" and response.exclude? "Warning"
+					if response["responsive"].include? "true" or response["responsive"].include? "false"
 						business.responsive = response["responsive"]
 						business.save
 						p "#{business.name} - #{business.responsive}"
-					else
+					elsif response["responsive"].include? "error" or response.include? "Warning"
 						business.responsive = "error"
 						business.save
+						p "#{business.name} - #{business.responsive}"
 					end
-				else
-					business.responsive = "error"
-					business.save
 				end
 		end
 	end

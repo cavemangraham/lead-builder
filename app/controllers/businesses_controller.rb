@@ -7,6 +7,10 @@ class BusinessesController < ApplicationController
     @businesses = Business.all
   end
 
+  def filter
+    @businesses = Business.where("responsive LIKE ?", "false")
+  end
+
   # GET /businesses/1
   # GET /businesses/1.json
   def show
