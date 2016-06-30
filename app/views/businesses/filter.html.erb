@@ -1,40 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Non-Responsive Business Leads</h1>
-<p style="display: inline-block; border: 1px solid black"><%= link_to 'Show All', businesses_path %></p>
-<p style="display: inline-block; border: 1px solid black"><%= link_to 'Download CSV', filter_path(format: :csv) %></p>
+<h1 style="text-align:center">Non-Responsive Business Leads</h1>
+<div style="width:170px; margin:0 auto;">
+  <p style="display: inline-block; border: 1px solid black"><%= link_to 'Show All', businesses_path %></p>
+  <p style="display: inline-block; border: 1px solid black"><%= link_to 'Download CSV', filter_path(format: :csv) %></p>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Email</th>
-      <th>Website</th>
-      <th>Phone</th>
-      <th>Responsive</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-1">#</div>
+      <div class="col-sm-1">Name</div>
+      <div class="col-sm-1">Address</div>
+      <div class="col-sm-1">Email</div>
+      <div class="col-sm-2">Website</div>
+      <div class="col-sm-2">Phone</div>
+      <div class="col-sm-1">Responsive</div>
+      <div class="col-sm-1">Speed</div>
+      <div class="col-sm-1">Usability</div>
+      <div class="col-sm-1">Options</div>
+    </div>
     <% @businesses.each_with_index do |business, i| %>
-      <tr>
-        <td><%= i %></td>
-        <td><%= business.name %></td>
-        <td><%= business.address %></td>
-        <td><%= business.email %></td>
-        <td><%= link_to business.website, business.website, target: '_blank' %></td>
-        <td><%= business.phone %></td>
-        <td><%= business.responsive %></td>
-        <td><%= link_to 'Show', business %></td>
-        <td><%= link_to 'Edit', edit_business_path(business) %></td>
-        <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="row">
+          <div class="col-sm-1" style="word-wrap: break-word"><%= i + 1 %></div>
+          <div class="col-sm-1" style="word-wrap: break-word"><%= business.name %></div>
+          <div class="col-sm-1" style="word-wrap: break-word"><%= business.address %></div>
+          <div class="col-sm-1" style="word-wrap: break-word"><%= business.email %></div>
+          <div class="col-sm-2" style="word-wrap: break-word"><%= link_to business.website, business.website, target: '_blank' %></div>
+          <div class="col-sm-2" style="word-wrap: break-word"><%= business.phone %></div>
+          <div class="col-sm-1" style="word-wrap: break-word"><%= business.responsive %></div>
+          <div class="col-sm-1" style="word-wrap: break-word"><%= business.speed %></div>
+          <div class="col-sm-1" style="word-wrap: break-word"><%= business.usability %></div>
+          <div class="col-sm-1" style="text-align:center">
+            <div class="row"><%= link_to 'Show', business %></div>
+            <div class="row"><%= link_to 'Edit', edit_business_path(business) %></div>
+            <div class="row"><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+          </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+</div>
 
 <br>
 
