@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 
   root 'businesses#index'
   get '/filter', to: 'businesses#filter'
+  post '/responsive', to: 'businesses#responsive'
+  post '/speed', to: 'businesses#speed'
 
 end

@@ -4,6 +4,8 @@
 <div style="width:170px; margin:0 auto;">
   <p style="display: inline-block; border: 1px solid black"><%= link_to 'Show All', businesses_path %></p>
   <p style="display: inline-block; border: 1px solid black"><%= link_to 'Download CSV', filter_path(format: :csv) %></p>
+  <%= button_to "Speed Test", 
+    url_for( :action => "speed", :controller=> :businesses ),:remote => true %>
 </div>
 
 <div class="container">

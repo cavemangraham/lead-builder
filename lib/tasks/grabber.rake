@@ -10,7 +10,7 @@ namespace :grabber do
 		directory_size["locality"][args[:locality]]
 		p "#{directory_size}"
 
-		(0..10).each do |current_page|
+		(0..1).each do |current_page|
 
 			directory = factual.table("places-us").search("").filters("$and" => [{"locality" => {"$eq" =>  args[:locality]}}, {"region" => {"$eq" => args[:region]}}]).page(current_page, :per => 50).rows
 			(0..49).each do |x|

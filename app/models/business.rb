@@ -1,6 +1,6 @@
 class Business < ActiveRecord::Base
 	def self.to_csv
-		attributes = %w{id name address email website phone responsive}
+		attributes = %w{id name address email website phone responsive speed usability}
 		CSV.generate(headers: true) do |csv|
 			csv << attributes
 
