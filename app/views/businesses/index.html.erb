@@ -1,45 +1,65 @@
 <p id="notice"><%= notice %></p>
-
-<h1 style="text-align:center">Business Leads</h1>
-<div style="width:355px; margin:0 auto;">
-  <p style="display: inline-block; border: 1px solid black"><%= link_to 'Only Show Non-Responsive', filter_path %></p>
-  <p style="display: inline-block; border: 1px solid black"><%= link_to 'Delete All', remove_all_businesses_path, method: :delete %></p>
-  <p style="display: inline-block; border: 1px solid black"><%= link_to 'Download CSV', businesses_path(format: :csv) %></p>
-    <%= button_to "Responsive Test", 
-    url_for( :action => "responsive", :controller=> :businesses ),:remote => true %>
-</div>
-
 <div class="container">
-    <div class="row">
-      <div class="col-sm-1">#</div>
-      <div class="col-sm-1">Name</div>
-      <div class="col-sm-1">Address</div>
-      <div class="col-sm-1">Email</div>
-      <div class="col-sm-2">Website</div>
-      <div class="col-sm-2">Phone</div>
-      <div class="col-sm-1">Responsive</div>
-      <div class="col-sm-1">Speed</div>
-      <div class="col-sm-1">Usability</div>
-      <div class="col-sm-1">Options</div>
-    </div>
-    <% @businesses.each_with_index do |business, i| %>
-      <div class="row">
-          <div class="col-sm-1" style="word-wrap: break-word"><%= i + 1 %></div>
-          <div class="col-sm-1" style="word-wrap: break-word"><%= business.name %></div>
-          <div class="col-sm-1" style="word-wrap: break-word"><%= business.address %></div>
-          <div class="col-sm-1" style="word-wrap: break-word"><%= business.email %></div>
-          <div class="col-sm-2" style="word-wrap: break-word"><%= link_to business.website, business.website, target: '_blank' %></div>
-          <div class="col-sm-2" style="word-wrap: break-word"><%= business.phone %></div>
-          <div class="col-sm-1" style="word-wrap: break-word"><%= business.responsive %></div>
-          <div class="col-sm-1" style="word-wrap: break-word"><%= business.speed %></div>
-          <div class="col-sm-1" style="word-wrap: break-word"><%= business.usability %></div>
-          <div class="col-sm-1" style="text-align:center">
-            <div class="row"><%= link_to 'Show', business %></div>
-            <div class="row"><%= link_to 'Edit', edit_business_path(business) %></div>
-            <div class="row"><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></div>
-          </div>
+
+  <h1 style="text-align:center">Business Leads</h1>
+  <div style="width:355px; margin:0 auto;">
+    <p style="display: inline-block; border: 1px solid black"><%= link_to 'Only Show Non-Responsive', filter_path %></p>
+    <p style="display: inline-block; border: 1px solid black"><%= link_to 'Delete All', remove_all_businesses_path, method: :delete %></p>
+    <p style="display: inline-block; border: 1px solid black"><%= link_to 'Download CSV', businesses_path(format: :csv) %></p>
+  </div>
+  <div>
+      <div class="row col-md-2 col-md-offset-5">
+        <%= button_to "Responsive Test", 
+        url_for( :action => "responsive", :controller=> :businesses, :remote => true) %>
       </div>
-    <% end %>
+      <div class="row col-md-12">
+        <div style="width:650px;margin: 0 auto;">
+          <%= form_tag({controller: "grabber", action: "add_business"}, method: "post") do %>
+              <%= label_tag :pages %>
+              <%= select_tag(:pages, options_for_select([['1', '0'],['2', '1'],['3', '2'],['4', '3'],['5', '4'],['6', '5'],['7', '6'],['8', '7'],['9', '8'],['10', '9']])) %>
+
+              <%= label_tag :region %>
+              <%= text_field_tag :region %>
+
+              <%= label_tag :locality %>
+              <%= text_field_tag :locality %>
+
+            <%= submit_tag "Submit" %>
+          <% end %>
+        </div>
+      </div>
+
+  </div>
+      <div class="row">
+        <div class="col-sm-1">#</div>
+        <div class="col-sm-1">Name</div>
+        <div class="col-sm-1">Address</div>
+        <div class="col-sm-1">Email</div>
+        <div class="col-sm-2">Website</div>
+        <div class="col-sm-2">Phone</div>
+        <div class="col-sm-1">Responsive</div>
+        <div class="col-sm-1">Speed</div>
+        <div class="col-sm-1">Usability</div>
+        <div class="col-sm-1">Options</div>
+      </div>
+      <% @businesses.each_with_index do |business, i| %>
+        <div class="row">
+            <div class="col-sm-1" style="word-wrap: break-word"><%= i + 1 %></div>
+            <div class="col-sm-1" style="word-wrap: break-word"><%= business.name %></div>
+            <div class="col-sm-1" style="word-wrap: break-word"><%= business.address %></div>
+            <div class="col-sm-1" style="word-wrap: break-word"><%= business.email %></div>
+            <div class="col-sm-2" style="word-wrap: break-word"><%= link_to business.website, business.website, target: '_blank' %></div>
+            <div class="col-sm-2" style="word-wrap: break-word"><%= business.phone %></div>
+            <div class="col-sm-1" style="word-wrap: break-word"><%= business.responsive %></div>
+            <div class="col-sm-1" style="word-wrap: break-word"><%= business.speed %></div>
+            <div class="col-sm-1" style="word-wrap: break-word"><%= business.usability %></div>
+            <div class="col-sm-1" style="text-align:center">
+              <div class="row"><%= link_to 'Show', business %></div>
+              <div class="row"><%= link_to 'Edit', edit_business_path(business) %></div>
+              <div class="row"><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+            </div>
+        </div>
+      <% end %>
 </div>
 
 <br>

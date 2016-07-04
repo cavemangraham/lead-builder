@@ -38,6 +38,7 @@ class BusinessesController < ApplicationController
       end
     end
   end
+
   def speed
     Business.all.each do |business|
       if business.website.present? and business.responsive == "false" and business.speed.blank?
